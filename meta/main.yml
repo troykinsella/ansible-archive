@@ -1,0 +1,28 @@
+---
+dependencies: []
+galaxy_info:
+  author: Troy Kinsella
+  description:
+  license: MIT
+  min_ansible_version: 1.6
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  - name: opensuse
+    versions:
+    - all
+  - name: Amazon
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  galaxy_tags:
+  - packaging

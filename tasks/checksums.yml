@@ -1,0 +1,14 @@
+---
+- name: calculate archive checksum
+  command: "{{ archive_checksum_type }}sum {{ archive_destination_path }}/{{ archive_file_name }}"
+  register: archive_calculated_checksum
+  when: "archive_exists"
+
+- name: store calculated checksum
+  set_fact:
+    archive_calculated_checksum: "{{ archive_calculated_checksum.stdout.split(' ')[0] }}"
+  when: "archive_calculated_checksum is defined"
+
+- name: store checksum match
+  set_fact:
+    archive_checksum_match: "{{ archive_calculated_checksum is defined and archive_checksum == archive_calculated_checksum }}"
