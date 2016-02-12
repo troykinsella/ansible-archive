@@ -1,5 +1,5 @@
-troykinsella.fetch-archive
-==========================
+troykinsella.archive
+====================
 
 An ansible role for fetching and unpacking archives, and verifying their checksums.
 
