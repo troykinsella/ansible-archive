@@ -1,14 +1,28 @@
 ---
+- name: archive stat
+  stat:
+    path: "{{ archive_cache_path }}/{{ archive_file_name }}"
+  register: archive
+  tags:
+  - archive
+
 - name: calculate archive checksum
-  command: "{{ archive_checksum_type }}sum {{ archive_destination_path }}/{{ archive_file_name }}"
-  register: archive_calculated_checksum
-  when: "archive_exists"
+  command: "{{ archive_checksum_algorithm }}sum {{ archive_cache_path }}/{{ archive_file_name }}"
+  register: archive_checksum_result
+  when: archive.stat.exists
+  tags:
+  - archive
 
 - name: store calculated checksum
   set_fact:
-    archive_calculated_checksum: "{{ archive_calculated_checksum.stdout.split(' ')[0] }}"
-  when: "archive_calculated_checksum is defined"
+    archive_calculated_checksum: "{{ archive_checksum_result.stdout.split(' ')[0] }}"
+  when: archive_checksum_result is defined and archive_checksum_result.changed|default(False)
+  tags:
+  - archive
 
 - name: store checksum match
   set_fact:
-    archive_checksum_match: "{{ archive_calculated_checksum is defined and archive_checksum == archive_calculated_checksum }}"
+    archive_checksum_match: "{{ archive_checksum == archive_calculated_checksum }}"
+  when: archive_calculated_checksum is defined
+  tags:
+  - archive

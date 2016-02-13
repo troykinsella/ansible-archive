@@ -1,7 +1,10 @@
 ---
-archive_file_name: ""
-archive_url: ""
-archive_checksum: ""
-archive_checksum_type: ""
-archive_destination_path: /usr/local/
-archive_extracted_dir_name: ""
+#archive_file_name: some-archive.tar.gz
+archive_file_mode: "0644"
+#archive_url: http://archive-palace.org/{{ archive_file_name }}
+#archive_checksum: 60e75fd9c462cf536ff2172ad8ddf361
+#archive_checksum_algorithm: sha1
+#archive_cache_path: /usr/local/pkg
+#archive_destination_path: /usr/local/
+#archive_destination_file_name: horse-shell
+#archive_extracted_file_name: horse-shell-v3.0.3

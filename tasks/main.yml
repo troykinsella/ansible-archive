@@ -1,35 +1,34 @@
 ---
-- name: archive exists?
-  stat:
-    path: "{{ archive_destination_path }}/{{ archive_file_name }}"
-  register: archive_exists
-
 - include: checksums.yml
+
+- name: make cache dir
+  command: mkdir -p {{ archive_cache_path }}
 
 - name: fetch archive
   get_url:
     url: "{{ archive_url }}"
-    dest: "{{ archive_destination_path }}"
-    checksum: "{{ archive_checksum }}"
+    dest: "{{ archive_cache_path }}"
+    mode: "{{ archive_file_mode }}"
   register: archive_fetched
-  when: "(archive_exists is not defined) or (not archive_checksum_match)"
+  when: "not archive.stat.exists or archive_checksum_match is not defined"
+  tags:
+  - archive
 
 - include: checksums.yml
-  when: "archive_fetched is not defined"
-
-- name: verify fetched archive
-  fail:
-    msg: "checksum did not match: {{ archive_calculated_checksum }}"
-  when: "archive_fetched is not defined and not archive_checksum_match"
-
-- name: extracted dir exists?
-  stat:
-    path: "{{ archive_destination_path }}/{{ archive_extracted_dir_name }}"
-  register: archive_extracted_dir_exists
+  when: archive_fetched is defined and not archive_fetched.skipped
 
 - name: unpack archive
   unarchive:
-    src: "{{ archive_destination_path }}/{{ archive_file_name }}"
+    src: "{{ archive_cache_path }}/{{ archive_file_name }}"
     dest: "{{ archive_destination_path }}"
     copy: no
-    creates: "{{ archive_destination_path }}/{{ archive_extracted_dir_name }}"
+    creates: "{{ archive_destination_path }}/{{ archive_destination_file_name|default(archive_extracted_file_name) }}"
+  register: archive_unpacked
+  tags:
+  - archive
+
+- name: move extracted item
+  command: mv {{ archive_destination_path }}/{{ archive_extracted_file_name }} {{ archive_destination_path }}/{{ archive_destination_file_name }}
+  when: archive_destination_file_name is defined and archive_unpacked.changed
+  tags:
+  - archive
