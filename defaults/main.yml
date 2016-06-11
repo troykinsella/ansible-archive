@@ -1,6 +1,7 @@
 ---
 #archive_file_name: some-archive.tar.gz
 archive_file_mode: "0644"
+archive_fetch_headers: ""
 #archive_url: http://archive-palace.org/{{ archive_file_name }}
 #archive_checksum: 60e75fd9c462cf536ff2172ad8ddf361
 #archive_checksum_algorithm: sha1

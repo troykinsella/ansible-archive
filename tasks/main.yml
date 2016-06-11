@@ -9,6 +9,7 @@
 - name: fetch archive
   get_url:
     url: "{{ archive_url }}"
+    headers: "{{ archive_fetch_headers }}"
     dest: "{{ archive_cache_path }}"
     mode: "{{ archive_file_mode }}"
   register: archive_fetched

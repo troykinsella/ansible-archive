@@ -9,6 +9,7 @@ Role Variables
 * archive_file_name: The archive file name.
 * archive_file_mode: Optional. The file mode of the fetched archive. Default: 644.
 * archive_url: The full url at which the archive can be downloaded.
+* archive_fetch_headers: Optional. Headers to pass in the http archive fetch. Default: "". Format: "key:value,key:value".
 * archive_checksum: The expected checksum of the fetched archive.
 * archive_checksum_algorithm: The checksum algorithm: md5, sha1, sha256, for example - simply depends on the availability of the sum tool.
 * archive_cache_path: Optional. The directory path into which the archive will be downloaded. Default: /usr/local/pkg
