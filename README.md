@@ -1,6 +1,8 @@
 troykinsella.archive
 ====================
 
+[![Build Status][travis-image]][travis-url]
+
 An ansible role for fetching and unpacking archives, and verifying their checksums.
 
 Role Variables
@@ -49,3 +51,6 @@ License
 -------
 
 MIT
+
+[travis-image]: https://travis-ci.org/troykinsella/ansible-archive.svg?branch=master
+[travis-url]: https://travis-ci.org/troykinsella/ansible-archive
