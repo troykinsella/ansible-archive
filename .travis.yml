@@ -26,10 +26,10 @@ script:
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check || exit 1"
 
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local || exit 1"
+  - "ansible-playbook -i tests/inventory tests/test.yml || exit 1"
 
   # Check for the extracted file
-  - ls /usr/local/hello-v1
+  - "ls -altR /usr/local/"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
