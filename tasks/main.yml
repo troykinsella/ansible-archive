@@ -2,7 +2,9 @@
 - include: checksums.yml
 
 - name: make cache dir
-  command: mkdir -p {{ archive_cache_path }}
+  file:
+    state: directory
+    path: "{{ archive_cache_path }}"
 
 - name: fetch archive
   get_url:
