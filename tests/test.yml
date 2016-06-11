@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - troykinsella.archive
+      archive_file_name: hello.tar.xz
+      archive_url: https://github.com/troykinsella/ansible-archive/blob/master/tests/fixtures/{{ archive_file_name }}
+      archive_checksum: 308f29156cdd6e841825ebba0635b00b67e3962e2176fc5a1d8d81a24478776b
+      archive_destination_file_name: hello
+      archive_extracted_file_name: hello-v1

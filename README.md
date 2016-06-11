@@ -11,9 +11,9 @@ Role Variables
 * archive_url: The full url at which the archive can be downloaded.
 * archive_fetch_headers: Optional. Headers to pass in the http archive fetch. Default: "". Format: "key:value,key:value".
 * archive_checksum: The expected checksum of the fetched archive.
-* archive_checksum_algorithm: The checksum algorithm: md5, sha1, sha256, for example - simply depends on the availability of the sum tool.
-* archive_cache_path: Optional. The directory path into which the archive will be downloaded. Default: /usr/local/pkg
-* archive_destination_path: Optional. The directory path into which the archive contents will be extracted. Default: /usr/local
+* archive_checksum_algorithm: Optional. The checksum algorithm: md5, sha1, sha256, for example - simply depends on the availability of the sum tool. Default: sha256.
+* archive_cache_path: Optional. The directory path into which the archive will be downloaded. Default: /usr/local/pkg.
+* archive_destination_path: Optional. The directory path into which the archive contents will be extracted. Default: /usr/local.
 * archive_extracted_file_name: The expected name of the root file or directory that is extracted from the archive.
 * archive_destination_file_name: Optional. Rename the extracted file to this value.
 
