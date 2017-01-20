@@ -25,17 +25,22 @@
     src: "{{ archive_cache_path }}/{{ archive_file_name }}"
     dest: "{{ archive_destination_path }}"
     copy: no
-    creates: "{{ archive_destination_path }}/{{ archive_destination_file_name|default(archive_extracted_file_name) }}"
   register: archive_unpacked
   tags:
   - archive
 
 - name: move extracted item
   command: mv {{ archive_destination_path }}/{{ archive_extracted_file_name }} {{ archive_destination_path }}/{{ archive_destination_file_name }}
-  when: archive_destination_file_name is defined and archive_unpacked.changed
+  when: archive_destination_file_name != ''
   tags:
   - archive
 
 - name: link extracted item
-  command: ln -sf {{ archive_destination_path }}/{{ archive_destination_file_name | default(archive_extracted_file_name) }} {{ archive_destination_path }}/{{ archive_destination_link_name }}
-  when: archive_destination_link_name is defined
+  file:
+    state: link
+    force: yes
+    src: "{{ archive_destination_path }}/{{ archive_destination_file_name | default(archive_extracted_file_name) }}"
+    dest: "{{ archive_destination_path }}/{{ archive_destination_link_name }}"
+  when: archive_destination_link_name != ''
+  tags:
+  - archive

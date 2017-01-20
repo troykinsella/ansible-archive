@@ -1,12 +1,12 @@
 ---
 #archive_file_name: some-archive.tar.gz
 archive_file_mode: "0644"
-archive_fetch_headers: ""
+archive_fetch_headers:
 #archive_url: http://archive-palace.org/{{ archive_file_name }}
-#archive_checksum: 60e75fd9c462cf536ff2172ad8ddf361
+archive_checksum:
 archive_checksum_algorithm: sha256
 archive_cache_path: /usr/local/pkg
 archive_destination_path: /usr/local/
-#archive_destination_file_name: horse-shell
-#archive_extracted_file_name: horse-shell-v3.0.3
-#archive_destination_link_name: active-horse-shell
+archive_destination_file_name:
+archive_extracted_file_name:
+archive_destination_link_name:
