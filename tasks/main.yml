@@ -35,3 +35,7 @@
   when: archive_destination_file_name is defined and archive_unpacked.changed
   tags:
   - archive
+
+- name: link extracted item
+  command: ln -sf {{ archive_destination_path }}/{{ archive_destination_file_name | default(archive_extracted_file_name) }} {{ archive_destination_path }}/{{ archive_destination_link_name }}
+  when: archive_destination_link_name is defined

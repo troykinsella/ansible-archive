@@ -18,6 +18,7 @@ Role Variables
 * archive_destination_path: Optional. The directory path into which the archive contents will be extracted. Default: /usr/local.
 * archive_extracted_file_name: The expected name of the root file or directory that is extracted from the archive.
 * archive_destination_file_name: Optional. Rename the extracted file to this value.
+* archive_destination_link_name: Optional. Create a symbolic link having this name to the `archive_extracted_file_name` (or `archive_destination_file_name`, when specified). 
 
 Example Playbook
 ----------------
@@ -34,6 +35,7 @@ Example Playbook
           archive_destination_path: /usr/local/
           archive_extracted_file_name: go
           archive_destination_file_name: go1.5.3 # Move the extracted file/dir
+          archive_destination_link_name: go # Create a link to the active version
 
 Platforms
 ---------

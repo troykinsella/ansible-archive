@@ -9,3 +9,4 @@ archive_cache_path: /usr/local/pkg
 archive_destination_path: /usr/local/
 #archive_destination_file_name: horse-shell
 #archive_extracted_file_name: horse-shell-v3.0.3
+#archive_destination_link_name: active-horse-shell
