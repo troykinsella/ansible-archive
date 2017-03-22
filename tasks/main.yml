@@ -19,6 +19,8 @@
 
 - include: checksums.yml
   when: archive_fetched is defined and not archive_fetched.skipped
+  tags:
+  - archive
 
 - name: unpack archive
   unarchive:
@@ -26,6 +28,14 @@
     dest: "{{ archive_destination_path }}"
     copy: no
   register: archive_unpacked
+  tags:
+  - archive
+
+- name: delete existing destination file
+  file:
+    path: "{{ archive_destination_path }}/{{ archive_destination_file_name }}"
+    state: absent
+  when: archive_destination_file_name != ''
   tags:
   - archive
 

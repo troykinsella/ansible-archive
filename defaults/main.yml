@@ -7,6 +7,6 @@ archive_checksum:
 archive_checksum_algorithm: sha256
 archive_cache_path: /usr/local/pkg
 archive_destination_path: /usr/local/
-archive_destination_file_name:
-archive_extracted_file_name:
-archive_destination_link_name:
+archive_destination_file_name: ""
+archive_extracted_file_name: ""
+archive_destination_link_name: ""
